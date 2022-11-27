@@ -1,0 +1,24 @@
+<a class="nav-link text-light" *ngIf="!_user.logged()" ngbNavLink routerLink="login">Iniciar sesión</a>
+<!-- <div class="dropdown" *ngIf="_user.logged()">
+    <img [src]="_user.getImagenUsuario()" alt="Admin" class="img-fluid img-thumbnail rounded-circle" width="50"
+        data-bs-toggle="dropdown" aria-expanded="false">
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#" [routerLink]="'perfil'">Perfil</a></li>
+        <li>
+            <hr />
+        </li>
+        <li><a class="dropdown-item" (click)="_user.salir()" href="#">Salir</a></li>
+    </ul>
+</div> -->
+
+<li *ngIf="_user.logged()" class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+    <a class="dropdown-toggle" tabindex="0" ngbDropdownToggle id="dropdownUsuario" role="button">
+        <img [src]="_user.getImagenUsuario()" alt="Admin" class="rounded-circle" width="40"
+        data-bs-toggle="dropdown" aria-expanded="false">
+    </a>
+    <div ngbDropdownMenu aria-labelledby="dropdownUsuario" class="dropdown-menu">
+        <a ngbDropdownItem href="#"  [routerLink]="'perfil'">Perfil</a>
+        <hr />
+        <a ngbDropdownItem href="#" (click)="_user.salir()" href="#">Salir</a>
+    </div>
+</li>

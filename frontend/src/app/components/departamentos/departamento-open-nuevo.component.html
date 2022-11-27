@@ -1,0 +1,20 @@
+<div class="container">
+    <form [formGroup]="form">
+        <div class="pre-scrollable">
+            <h4>Empleado</h4>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputNombre">Empleado*</label>
+                    <select class="form-select" id="pais" formControlName="empladoid">
+                        <option selected disabled value="">Elegir...</option>
+                        <option *ngFor="let pais of getEmpleados()" [ngValue]="pais.id">{{pais.nombre}}</option>
+                    </select>
+                    <small *ngIf="enviado && form.get('empleado')?.invalid" class="text-danger">Requerido
+                    </small>
+                </div>
+            </div>
+        </div>
+        <button *ngIf="check()" type="submit" class="btn btn-primary mt-5"
+            (click)="!isEdit() ? agregar() : editar()">{{isEdit() ? "Editar" : "Agregar Departamento"}}</button>
+    </form>
+</div>

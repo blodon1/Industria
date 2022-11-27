@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <div class="card card-body">
+        <div class="card-content row p-2"></div>
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-4">
+                    <input [hidden]="true" type="file" id="profileImg" accept="image/*" #profileImg
+                        (change)="actualizarImagen(profileImg)" />
+                    <img [src]="_user.getImagenEmpresa()" alt="Sin imagen de perfil" class="img-fluid" (click)="subirImagen()">
+                </div>
+                <div class="col">
+                    <h2>{{_user.getEmpresa().nombre}}</h2>
+                    <div class="row">
+                        <div class="col-sm-3 ">
+                            <h6 class="mb-0"><b>Nombre</b></h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <input type="text" class="form-control" id="nombre" formControlName="nombre" required>
+                        </div>
+                    </div>
+                    <hr>
+                    
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0"><b>Telefono</b></h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <input type="text" class="form-control" id="telefono" formControlName="telefono" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0"><b>País</b></h6>
+                        </div>
+                        <div class="col-sm-9">
+                            <select class="form-select" id="pais" formControlName="paisid">
+                                <option selected disabled value="">Elegir...</option>
+                                <option *ngFor="let pais of paises" [ngValue]="pais.id">{{pais.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0"><b>Email</b></h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <input type="email" class="form-control" id="email" formControlName="email" required>
+                        </div>
+                    </div>
+                    <hr>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <h6 class="mb-0"><b>Dirección</b></h6>
+                </div>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="pais" maxlength="200" formControlName="direccion">
+                    </textarea>
+                </div>
+            </div>
+            <div>
+                <hr>
+                <button class="btn btn-warning" type="submit" (click)="actualizarEmpresa()">Actualizar</button>
+            </div>
+        </form>
+    </div>
+</div>

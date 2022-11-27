@@ -1,0 +1,22 @@
+<section class="container vh-100 w-50">
+    <div class="card card-body mt-5 w-50 mx-auto p-5">
+        <h1 class="mx-auto">Iniciar sesión</h1>
+        <form novalidate [formGroup]="form" (ngSubmit)="logIn()">
+            <div class="form-group">
+                <label for="correo" class="col-form-label">Correo</label>
+                <input type="email" class="form-control" id="correo" formControlName="email"
+                    placeholder="usuario@server.com" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" formControlName="passw" value="" required>
+            </div>
+            <div class="text-center">
+                <a class="nav-link" [routerLink]="['/recuperar']">Restaurar Contraseña</a>
+                <a class="nav-link" [routerLink]="['/registro']">¿No tiene una cuenta?</a>
+
+                <button [disabled]="!form.valid" class="btn btn-dark" type="submit">Iniciar</button>
+            </div>
+        </form>
+    </div>
+</section>

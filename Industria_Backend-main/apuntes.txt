@@ -1,0 +1,18 @@
+--ESTRUCTURA BACKEND (CARPETAS Y ARCHIVOS)
+
+--CREACION DE PROYECTO
+    npm init -y    (cmd o terminal) --> en la carpeta que contendra el PROYECTO
+
+--NODEMON
+    npm i -g  nodemon (reinicia el servidor automaticamente cuando se hacxe alguna cambio)
+
+--LIBRERIAS
+npm i express ejs cors bcrypt multer  jsonwebtoken nodemailer mysql pg dotenv
+
+
+--npm run dev -->inicia con nodemon
+--npm run start -->inicia normal con node
+
+
+
+

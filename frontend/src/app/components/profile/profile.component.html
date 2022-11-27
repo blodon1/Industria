@@ -1,0 +1,116 @@
+<div class="container my-5">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <div class="perfilImagen">
+                <input [hidden]="true" type="file" id="profileImg" accept="image/*" #profileImg
+                  (change)="actualizarImagen(profileImg)" />
+                <img [src]="_user.getImagenUsuario()" alt="Añadir imagen de perfil" class="rounded" width="200"
+                  (click)="subirImagen()" style="background-color:rgba(9, 175, 111, 0.684); padding: 5px;">
+              </div>
+              <div class="mt-3">
+                <h4>{{_user.getUsuario().nombre}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-3">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0"><b>Nombre</b></h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{_user.getUsuario().nombre}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0"><b>País</b></h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{pais}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0"><b>Corre Electrónico</b></h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{_user.getUsuario().email}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0"><b>Telefono</b></h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{_user.getUsuario().telefono}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0"><b>Licencia</b></h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{_user.getLicencia().descripcion}}
+                </div>
+              </div>
+              <div *ngIf="!_user.conLicencia()" class="col-sm-12 mt-2">
+                <button class="btn btn-primary" type="submit" (click)="pagar()">Pagar licencia</button>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div>
+                <form novalidate [formGroup]="passForm" (ngSubmit)="actualizarPassword()">
+                  <div class="row g-3 mb-3">
+                    <div class="col-4">
+                      <label for="password" class="col-form-label"><b>Contraseña actual</b></label>
+                      <input type="password" class="form-control" id="password" formControlName="pass0" value="">
+                      <small *ngIf="passForm.get('pass0')?.errors?.['login']" class="text-danger">Contraseña incorrecta
+                      </small>
+                    </div>
+                    <div class="col-4">
+                      <label for="password" class="col-form-label"><b>Contraseña nueva</b></label>
+                      <input type="password"
+                        [class]="passForm.get('passw')?.errors?.['invalidPassword'] ? 'form-control border border-danger': 'form-control'"
+                        id="password" formControlName="passw" value="">
+                      <small *ngIf="passForm.get('passw')?.errors?.['invalidPassword']" class="text-danger">Debe ser al
+                        menos 8
+                        carácteres, un número y un signo
+                      </small>
+                    </div>
+                    <div class="col-4 mx-auto">
+                      <label for="password2" class="col-form-label"><b>Confirmar nueva contraseña</b></label>
+                      <input type="password"
+                        [class]="this.passForm.errors?.['mismatch']? 'form-control border border-danger': 'form-control'"
+                        id="password2" formControlName="passw2" value="">
+                      <small class="text-danger" *ngIf="this.passForm.errors?.['mismatch']">Las contraseñas no son
+                        iguales</small>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <button class="btn btn-warning " type="submit">Cambiar contraseña</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

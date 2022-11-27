@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" >MELASSA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul ngbNav #nav="ngbNav" class="nav" [activeId]="route.fragment | async">
+                <li class="nav-item" [ngbNavItem]="link.fragment" *ngFor="let link of _user.getLinks()">
+                    <a class="nav-link text-light" ngbNavLink [routerLink]="link.fragment">{{ link.title }}</a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="d-flex">
+            <ul ngbNav #nav="ngbNav" class="nav" [activeId]="route.fragment | async">
+                <li class="nav-item" ngbNavItem="login">
+                    <app-usuario></app-usuario>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

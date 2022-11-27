@@ -1,0 +1,29 @@
+.operation {
+    cursor: pointer;
+}
+
+td.min,
+th.min {
+    width: 1%;
+    white-space: nowrap;
+}
+
+tr svg {
+    visibility: hidden;
+}
+
+tr:hover svg {
+    visibility: visible;
+}
+
+.delete {
+    color: rgb(159, 0, 0);
+}
+
+.edit {
+    color: rgb(202, 202, 0);
+}
+
+.seleccionable:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,242 @@
+<!-- <div class="tabs-container">
+  <ul class="tabs">
+    <li class="active">
+      <a class="text-dark" href="">Teams</a>
+    </li>
+    <li>
+      <a class="text-dark" href="">Proyectos</a>
+    </li>
+    <li>
+      <a class="text-dark" href="">Tasks</a>
+    </li>
+  </ul>
+  <div class="tabs-content">
+    <div class="tabs-panel active" data-index="0">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Teams</h5>
+          <a href="#" class="btn btn-primary">Nuevo Team</a>
+        </div>
+      </div>
+      <div class="container">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class=" col-md-2" scope="col">Code</th>
+              <th class=" col-md-6" scope="col">Nombre</th>
+              <th scope="col">Depto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>@mdo</td>
+              <td>
+                <button type="button" class="btn btn-primary">Detalle</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>@mdo</td>
+              <td>
+                <button type="button" class="btn btn-primary">Detalle</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>@mdo</td>
+              <td>
+                <button type="button" class="btn btn-primary">Detalle</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tabs-panel" data-index="1">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Proyectos</h5>
+          <a href="#" class="btn btn-primary">Nuevo Proyecto</a>
+          <a href="#" class="btn btn-primary">Historial de Proyectos</a>
+        </div>
+      </div>
+      <div class="container">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class=" col-md-2" scope="col">Code</th>
+              <th class=" col-md-6" scope="col">Nombre</th>
+              <th scope="col">Team</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>
+                <button type="button" class="btn btn-primary">Detalle</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@mdo</td>
+              <td>
+                <button type="button" class="btn btn-primary">Detalle</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@mdo</td>
+              <td>
+                <button type="button" class="btn btn-primary">Detalle</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tabs-panel" data-index="2">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Tasks</h5>
+          <a href="#" class="btn btn-primary">Nueva Taks</a>
+          <a href="#" class="btn btn-primary">Historial de Tasks</a>
+        </div>
+      </div>
+      <div class="container">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class=" col-md-2" scope="col">Code</th>
+              <th class=" col-md-6" scope="col">Nombre</th>
+              <th scope="col">Team</th>
+              <th scope="col">Responsable</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+              <td>
+                <button type="button" class="btn btn-primary">Detalle</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>@mdo</td>
+              <td>
+                <button type="button" class="btn btn-primary">Detalle</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+              <td>@mdo</td>
+              <td>
+                <button type="button" class="btn btn-primary">Detalle</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div *ngIf="isMain()" class="container mt-2">
+  <div class="row">
+    <div class="col-md-12 col-lg-8 col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-1">
+              <button *ngIf="index != null" type="button" class="btn btn-transparent"><svg cIcon name="cilChevronLeft"
+                  size="sm" width="20" height="20" title="Numbered List Icon" (click)="previous()"></svg></button>
+            </div>
+            <div class="col-10 ">
+              <div *ngIf="index != null" class="w-100 text-center">
+                <span class="btn btn-transparent"> Tareas:<b> {{ proyectos[index].nombre }}</b> </span>
+                <button type="button" (click)="newTask()" class="btn btn-transparent"><svg cIcon name="cilPlus"
+                    size="sm" width="20" height="20" title="Numbered List Icon"></svg></button>
+              </div>
+            </div>
+            <div class="col-1 px-0">
+              <button *ngIf="index != null" type="button" class="btn btn-transparent" (click)="next()">
+                <svg cIcon name="cilChevronRight" size="sm" width="20" height="20" title="Numbered List Icon"></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <app-tabla [campos]="['nombre', 'descripcion']" [columnas]="['Nombre', 'Descripcion']"
+            [llamada]="'getALLTareaProyecto|'+ proyectos[index] + ':tareas'" [puedeEditar]="false"
+            [actualizar]="actualizar" [puedeVer]="false" [puedeBorrar]="true" [conBusqueda]="false"
+            [conSelector]="false"></app-tabla>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Proyectos <button (click)="newProject()" type="button" class="btn btn-transparent"><svg cIcon name="cilPlus"
+              size="sm" width="20" height="20" title="Numbered List Icon"></svg></button>
+        </div>
+        <div class="card-body">
+          <app-tabla [campos]="['nombre', 'descripcion']" [columnas]="['Nombre', 'Descripcion']"
+            [llamada]="'getALLProyecto|'+ _user.getEmpresa().id + ':proyectos'" [numItems]="2" [actualizar]="actualizar"
+            [puedeEditar]="false" [puedeVer]="false" [puedeBorrar]="true" [conBusqueda]="false" [conSelector]="false">
+          </app-tabla>
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-header">
+          Equipos <button (click)="newTeam()" type="button" class="btn btn-transparent"><svg cIcon name="cilPlus"
+              size="sm" width="20" height="20" title="Numbered List Icon"></svg></button>
+        </div>
+        <div class="card-body">
+          <app-tabla [campos]="['nombre', 'descripcion']" [columnas]="['Nombre', 'Descripcion']"
+            [llamada]="'getALLTeamWork|'+ _user.getEmpresa().id + ':teamWorks'" [actualizar]="actualizar" [numItems]="5"
+            [puedeEditar]="false" [puedeVer]="false" [puedeBorrar]="true" [conBusqueda]="false" [conSelector]="false">
+          </app-tabla>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-2" *ngIf="isTask()">
+  <button type="button" class="btn btn-warning" (click)="goBack()"><svg cIcon name="cilChevronLeft" size="sm" width="20"
+      height="20" title="Numbered List Icon"></svg></button>
+</div>
+
+<div class="container mt-2" *ngIf="isProject()">
+  <button type="button" class="btn btn-warning" (click)="goBack()"><svg cIcon name="cilChevronLeft" size="sm" width="20"
+      height="20" title="Numbered List Icon"></svg></button>
+  <app-proyecto-nuevo ($saved)="save()"></app-proyecto-nuevo>
+</div>
+
+<div class="container mt-2" *ngIf="isTeam()">
+  <button type="button" class="btn btn-warning d-inline-flex" (click)="goBack()"><svg cIcon name="cilChevronLeft" size="sm" width="20"
+      height="20" title="Numbered List Icon"></svg></button>
+  <app-equipo-nuevo ($saved)="save()"></app-equipo-nuevo>
+</div>

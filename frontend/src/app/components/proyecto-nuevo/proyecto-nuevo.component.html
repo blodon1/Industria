@@ -1,0 +1,90 @@
+<form class="row" [formGroup]="form">
+    <div class="col">
+        <div class="card mt-4">
+            <div class="card-header">
+                Proyecto
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inputNombre">Nombre*</label>
+                        <input type="text" class="form-control" formControlName="nombre" id="inputNombre"
+                            placeholder="Nombre">
+                        <small *ngIf="form.get('nombre')?.invalid" class="text-danger">Requerido
+                        </small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inputDir">Descripción</label>
+                        <textarea cols="5" rows="3" class="form-control" id="inputDir" formControlName="descripcion"
+                            placeholder="Descripción"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inputTeamworkId">Equipo*</label>
+                        <select class="form-select" #equipoSelect id="inputTeamworkId" (change)="actualizarEquipo(equipoSelect.value)" formControlName="teamWorkId">
+                            <option selected disabled value="">Elegir...</option>
+                            <option *ngFor="let equipo of equipos" [value]="equipo.id">{{equipo.nombre}}</option>
+                        </select>
+                        <small *ngIf="form.get('equipo')?.invalid" class="text-danger">Requerido
+                        </small>
+                    </div>
+                </div>
+                <div class="row row-cols-sm-auto mt-2">
+                    <div class="col-12">
+                        <label for="inputDir">Fecha inicio</label>
+                        <div class="dp-hidden position-absolute">
+                            <div class="input-group">
+                                <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker"
+                                    [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                                    [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!" tabindex="-1">
+                                <ng-template #t let-date let-focused="focused">
+                                    <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                                        [class.faded]="isHovered(date) || isInside(date)"
+                                        (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+                                        {{ date.day }}
+                                    </span>
+                                </ng-template>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input #dpFromDate class="form-control" formControlName="inicio" placeholder="yyyy-mm-dd"
+                                name="dpFromDate" [value]="formatter.format(fromDate)"
+                                (input)="fromDate = validateInput(fromDate, dpFromDate.value)">
+                            <button class="btn btn-outline-secondary calendar" (click)="datepicker.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputDir">Fecha fin</label>
+                        <div class="input-group">
+                            <input #dpToDate class="form-control" formControlName="fin" placeholder="yyyy-mm-dd"
+                                name="dpToDate" [value]="formatter.format(toDate)"
+                                (input)="toDate = validateInput(toDate, dpToDate.value)">
+                            <button class="btn btn-outline-secondary calendar" (click)="datepicker.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-success w-100 mt-2" (click)="new()">Agregar <svg cIcon
+                            name="cilPlus" size="sm" width="20" height="20" title="Numbered List Icon"></svg></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col" >
+        <div class="card mt-4" *ngIf="getEquipo() != null">
+            <div class="card-header">
+                Integrantes
+            </div>
+            <div class="card-body">
+                <app-tabla [campos]="['nombre', 'descripcion']" [columnas]="['Nombre', 'Descripcion']"
+                    [llamada]="'getEmpleadoTW|'+ getEquipo() + ':teamWorks'" [numItems]="5" [puedeEditar]="false"
+                    [puedeVer]="false" [actualizar]="actualizar" [puedeBorrar]="true" [conBusqueda]="false"
+                    [conSelector]="false"></app-tabla>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,39 @@
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col">
+            <div class="card mt-4">
+                <div class="card-header">
+                    Equipo
+                </div>
+                <div class="card-body">
+                    <div class="form-row mb-2">
+                        <div class="form-group">
+                            <label for="inputNombre">Nombre*</label>
+                            <input type="text" class="form-control" formControlName="nombre" id="inputNombre"
+                                placeholder="Nombre">
+                            <small *ngIf="form.get('nombre')?.invalid" class="text-danger">Requerido
+                            </small>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-success w-100 mt-2" (click)="new()">Agregar <svg cIcon name="cilPlus" size="sm"
+                            width="20" height="20" title="Numbered List Icon"></svg></button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card mt-4">
+                <div class="card-header">
+                    Integrantes
+                </div>
+                <div class="card-body">
+                    <app-tabla [campos]="['nombre', 'descripcion']" [columnas]="['Nombre', 'Descripcion']"
+                        [llamada]="'getAllEmpleadosEmpresa|'+ _user.getEmpresa().id + ':empleados'" [numItems]="5"
+                        [puedeEditar]="false" [puedeSeleccionar]="true" [puedeVer]="false" [puedeBorrar]="true"
+                        [conBusqueda]="false" [conSelector]="false" ($getSeleccionados)="getSeleccionados($event)">
+                    </app-tabla>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

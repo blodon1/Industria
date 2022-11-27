@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<body  class="cuepo" style="background-color:rgba(9, 175, 111, 0.684);"> 
+<div class="container p-2">
+    <h2>Categorías</h2>
+    <button class="btn btn-warning mt-2" (click)="new(content)" >Nuevo</button>
+    <app-tabla [campos]="['nombre', 'descripcion', 'activo']" [columnas]="['Nombre', 'Descripcion', 'Activo']"
+        [llamada]="'getAllCategoria|'+ _user.getEmpresa().id + ':categorias'" ($ver)="openId(content, $event)"
+        ($modificar)="edit(content, $event)" ($eliminar)="delete($event)"></app-tabla>
+</div>
+
+<ng-template #content let-offcanvas>
+    <app-categoria-nuevo [id]="categoria" [operation]="operation" ($creado)="close(content)"></app-categoria-nuevo>
+</ng-template>
+</body>
+
+</html>

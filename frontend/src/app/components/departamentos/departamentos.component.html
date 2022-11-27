@@ -1,0 +1,15 @@
+<div class="container p-2" *ngIf="!abierto">
+    <h2>Departamentos</h2>
+    <button class="btn btn-warning mt-2" (click)="new(content)">Nuevo</button>
+    <app-tabla [campos]="['nombre', 'descripcion']" [columnas]="['Nombre', 'Descripcion']"
+        [llamada]="'getAllDeptos|'+ _user.getEmpresa().id + ':deptos'" ($ver)="openId(content, $event)"
+        ($modificar)="edit(content, $event)" ($eliminar)="delete($event)" [actualizar]="actualizar"></app-tabla>
+</div>
+
+<ng-template #content let-offcanvas>
+    <app-departamento-nuevo [id]="departamento" [operation]="operation" ($creado)="close(content)">
+    </app-departamento-nuevo>
+</ng-template>
+
+<app-departamento-open [@openClose]="abierto ? 'open' : 'closed'" [id]="departamento" *ngIf="abierto" [abierto]="abierto" (cerrado)="closeOther()">
+</app-departamento-open>

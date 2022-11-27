@@ -1,0 +1,57 @@
+<div class="container-fluid my-2">
+  <div class="row m-2">
+    <div class="col-3 col-1-sm">
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
+        <li ngbNavItem="empresa">
+          <a ngbNavLink>
+            <div ngbNavLink class="card card-body p-5" style="background-color:rgba(9, 175, 111, 0.684);">
+              <span ><svg cIcon name="cilIndustry" width="25"></svg> Mi empresa</span>
+            </div>
+          </a>
+          <ng-template ngbNavContent>
+            <app-empresa></app-empresa>
+          </ng-template>
+        </li>
+        <li ngbNavItem="empleados">
+          <a ngbNavLink>
+            <div ngbNavLink class="card card-body p-5" style="background-color:rgba(9, 175, 111, 0.684);">
+              <span><svg cIcon name="cilPeople" width="25"></svg> Empleados</span>
+            </div>
+          </a>
+          <ng-template ngbNavContent>
+            <app-empleados></app-empleados>
+          </ng-template>
+        </li>
+        <li ngbNavItem="departamentos">
+          <a ngbNavLink>
+            <div ngbNavLink class="card card-body p-5" style="background-color:rgba(9, 175, 111, 0.684);">
+              <span><svg cIcon name="cilBuilding" width="25"></svg> Departamentos</span>
+            </div>
+          </a>
+          <ng-template ngbNavContent>
+            <app-departamentos></app-departamentos>
+          </ng-template>
+        </li>
+        
+        <li ngbNavItem="tiempo">
+          <a ngbNavLink>
+            <div ngbNavLink class="card card-body p-5" style="background-color:rgba(9, 175, 111, 0.684);">
+              <span><svg cIcon name="cilAvTimer" width="25"></svg> Tiempo</span>
+            </div>
+          </a>
+          <ng-template ngbNavContent>
+            <h1>Hola, estás en la bitácora.<br>
+              Esta es una característica no disponible para la versión de prueba (demo).
+              Si deseas utilizarla, por favor, contacta con nosotros para hablar sobre los
+              planes que estamos ofreciendo a nuestros clientes.
+            </h1>
+          </ng-template>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md col-4-sm">
+      <div [ngbNavOutlet]="nav" class="ms-4"></div>
+    </div>
+  </div>
+</div>

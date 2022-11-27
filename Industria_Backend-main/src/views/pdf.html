@@ -1,0 +1,11 @@
+
+
+
+<!--<embed src="/doc/mypdf.pdf" width="500" height="375" type="application/pdf">-->
+<% if (doc.link) { %>
+<embed src="<%= doc.link %>" width="100%" height="50%" type="application/pdf">
+    <% } %>
+
+    <% if (doc.informe) { %>
+        <embed src="<%= doc.informe %>" width="100%" height="50%" type="application/pdf">
+            <% } %>

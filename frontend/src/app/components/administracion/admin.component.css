@@ -1,0 +1,9 @@
+.nav-link.active {
+
+  background-color: transparent;
+}
+
+.nav-link.active .card {
+  background-color: #0d6efd;
+  border-color: white;
+}

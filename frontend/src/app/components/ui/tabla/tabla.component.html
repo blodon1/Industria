@@ -1,0 +1,50 @@
+<div class="w-100">
+    <div class="d-flex justify-content-between">
+        <form *ngIf="conBusqueda">
+            <div class="mb-3 row">
+                <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Búsqueda:</label>
+                <div class="col-xs-3 col-sm-auto">
+                    <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter">
+                </div>
+            </div>
+        </form>
+        <ngb-pagination *ngIf="conPaginacion" [collectionSize]="cantColeccion" [(page)]="pagina" [maxSize]="8"
+            [pageSize]="numItems">
+        </ngb-pagination>
+
+        <select *ngIf="conSelector" class="form-select" style="width: auto" [(ngModel)]="numItems">
+            <option [value]="5">5 elementos</option>
+            <option [value]="10" selected>10 elementos</option>
+            <option [value]="15">15 elementos</option>
+            <option [value]="20">20 elementos</option>
+        </select>
+    </div>
+    <div *ngIf="cantColeccion > 0">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th *ngFor="let columna of columnas" scope="col"> {{columna}} </th>
+                    <th *ngIf="puedeVer" class="min" scope="col"></th>
+                    <th *ngIf="puedeEditar" class="min" scope="col"></th>
+                    <th *ngIf="puedeBorrar" class="min" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr [class]="puedeSeleccionar ? 'seleccionable' : ''" *ngFor="let dato of paginar(); index as i"
+                    (click)="puedeSeleccionar ? (seleccionado(dato['id']) ? deseleccionar(dato['id']) : seleccionar(dato['id'])) : ''">
+                    <th scope="row">{{!seleccionado(dato['id']) ? dato['id'] : 'S'}}</th>
+                    <td *ngFor="let campo of campos">
+                        <ngb-highlight [result]="limpiar(dato[campo])" [term]="filter.value"></ngb-highlight>
+                    </td>
+                    <td *ngIf="puedeVer" class="operation" scope="row" (click)="ver(dato['id'])"><svg cIcon
+                            name="cilZoom" width="20" title="Ver"></svg></td>
+                    <td *ngIf="puedeEditar" class="operation" scope="row" (click)="modificar(dato['id'])"><svg cIcon
+                            name="cilPencil" width="20" title="Editar" class="edit"></svg></td>
+                    <td *ngIf="puedeBorrar" class="operation" scope="row" (click)="eliminar(dato['id'])"><svg cIcon
+                            name="cilDelete" width="20" title="Eliminar" class="delete"></svg></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

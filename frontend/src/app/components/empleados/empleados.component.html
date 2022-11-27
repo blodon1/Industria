@@ -1,0 +1,12 @@
+<div class="container p-2">
+    <h2>Empleados</h2>
+    <button class="btn btn-warning mt-2" (click)="new(content)">Nuevo</button>
+    <app-tabla [campos]="['nombre', 'identidad', 'telefono', 'email']"
+        [columnas]="['Nombre', 'Identidad', 'Teléfono', 'Email']"
+        [llamada]="'getAllEmpleadosEmpresa|'+ _user.getEmpresa().id + ':empleados'" ($ver)="openId(content, $event)"
+        ($modificar)="edit(content, $event)" ($eliminar)="delete($event)" [actualizar]="actualizar"></app-tabla>
+</div>
+
+<ng-template #content let-offcanvas>
+    <app-empleado-nuevo [id]="empleado" [operation]="operation" ($creado)="close(content)"></app-empleado-nuevo>
+</ng-template>

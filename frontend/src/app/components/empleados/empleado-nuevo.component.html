@@ -1,0 +1,71 @@
+<div class="container">
+    <form [formGroup]="form">
+        <div class="pre-scrollable">
+            <h4>Empleado</h4>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputNombre">Nombre*</label>
+                    <input type="text" class="form-control" formControlName="nombre" id="inputNombre"
+                        placeholder="Nombre">
+                    <small *ngIf="enviado && form.get('nombre')?.invalid" class="text-danger">Requerido
+                    </small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputIdentidad">Identidad*</label>
+                    <input type="text" class="form-control" formControlName="identidad" id="inputNombre"
+                        placeholder="Nombre">
+                    <small *ngIf="enviado && form.get('identidad')?.invalid" class="text-danger">Requerido
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputDir">Dirección</label>
+                    <textarea cols="5" rows="3" class="form-control" id="inputDir" formControlName="direccion"
+                        placeholder="Dirección"></textarea>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="form-group">
+                    <label for="correo" class="form-label">Correo</label>
+                    <div class="input-group">
+                        <input type="email"
+                            [class]="enviado && form.get('email')?.invalid ? 'form-control border border-danger': 'form-control'"
+                            id="correo" formControlName="email" placeholder="usuario@server.com"
+                            aria-describedby="correo">
+                        <span class="input-group-text" id="correo" style="border: 1px solid black;">@</span>
+                    </div>
+                    <small *ngIf="enviado && form.get('email')?.invalid" class="text-danger"> El correo es invalido
+                    </small>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="form-group">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text"
+                        [class]="enviado && form.get('telefono')?.invalid ? 'form-control border border-danger': 'form-control'"
+                        id="telefono" formControlName="telefono" placeholder="9587-7585">
+                    <small *ngIf="enviado && form.get('telefono')?.errors?.['invalidPhone']" class="text-danger">El
+                        télefono es
+                        inválido
+                    </small>
+                </div>
+            </div>
+            <div class="row g-3 mb-3">
+                <div class="form-group">
+                    <label for="telefono" class="form-label">Salario base</label>
+                    <input type="number" min="0"
+                        [class]="enviado && form.get('salarioBase')?.invalid ? 'form-control border border-danger': 'form-control'"
+                        id="telefono" formControlName="salarioBase" placeholder="1">
+                    <small *ngIf="enviado && form.get('salarioBase')?.errors?.['invalidPhone']" class="text-danger">Requerido
+                    </small>
+                </div>
+            </div>
+        </div>
+        <button *ngIf="check()" type="submit" class="btn btn-warning mt-5"
+            (click)="!isEdit() ? agregar() : editar()">{{isEdit() ? "Editar" : "Agregar Empleado"}}</button>
+    </form>
+</div>

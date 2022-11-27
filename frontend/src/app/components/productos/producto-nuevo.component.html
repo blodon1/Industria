@@ -1,0 +1,62 @@
+<div class="container">
+    <form [formGroup]="productoForm">
+        <div class="pre-scrollable">
+            <h4>Producto</h4>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputNombre">Nombre*</label>
+                    <input type="text" class="form-control" formControlName="nombre" id="inputNombre"
+                        placeholder="Nombre">
+                    <small *ngIf="enviado && productoForm.get('nombre')?.invalid" class="text-danger">Requerido
+                    </small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputDesc">Descripción</label>
+                    <textarea cols="5" rows="3" class="form-control" id="inputDesc" formControlName="descripcion"
+                        placeholder="Descripción"></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputCategoria">Categoria</label>
+                    <select id="inputCategoria" formControlName="categoriaid" class="form-control">
+                        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}
+                        </option>
+                    </select>
+                    <small *ngIf="enviado && productoForm.get('categoriaid')?.invalid" class="text-danger">Requerido
+                    </small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputUnidades">Unidades</label>
+                    <input type="number" class="form-control" id="inputUnidades" formControlName="unidades" min="1"
+                        value="1" required="">
+                    <small *ngIf="enviado && productoForm.get('unidades')?.invalid" class="text-danger">Requerido
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPrecio">Precio</label>
+                    <input type="number" class="form-control" id="inputPrecio" formControlName="precio" min="0.00"
+                        step="0.01" required="">
+                    <small *ngIf="enviado && productoForm.get('precio')?.invalid" class="text-danger">Requerido
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="inputState">Finito</label>
+                    <select id="inputState" class="form-control" formControlName="finito">
+                        <option value="1">Finito</option>
+                        <option value="0">No Finito</option>
+                    </select>
+                    <small *ngIf="enviado && productoForm.get('finito')?.invalid" class="text-danger">Requerido
+                    </small>
+                </div>
+            </div>
+        </div>
+        <button *ngIf="check()" type="submit" class="btn btn-warning mt-5"
+            (click)="!isEdit() ? agregar() : editar()">{{isEdit() ? "Editar" : "Agregar Producto"}}</button>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+<section class="container vh-100  w-50">
+    <div *ngIf="token === null" class="card card-body mt-5 w-75 mx-auto">
+        <h1>Ingrese su correo</h1>
+        <form novalidate [formGroup]="emailForm" (ngSubmit)="recover()">
+            <div class="form-group mb-3">
+                <label for="correo" class="col-form-label">Correo</label>
+                <input type="email" class="form-control" id="correo" formControlName="email"
+                    placeholder="usuario@server.com" value="" required>
+            </div>
+            <div class="text-center">
+                <button [disabled]="!emailForm.valid" class="btn btn-dark" type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="token !== null" class="card card-body mt-5 w-75 mx-auto">
+        <h1>Ingrese su nueva contraseña</h1>
+        <form novalidate [formGroup]="recoverForm" (ngSubmit)="newPassword()">
+            <div class="row g-3 mb-3">
+				<div class="col-12">
+					<label for="password" class="col-form-label">Nueva contraseña</label>
+					<input type="password" [class]="recoverForm.get('passw')?.invalid ? 'form-control border border-danger': 'form-control  border border-success'"
+						id="password" formControlName="passw" value="">
+					<small *ngIf="recoverForm.get('passw')?.errors?.['invalidPassword']" class="text-danger">Debe ser al menos 8 carácteres, un número y un signo
+					</small>
+				</div>
+			</div>
+            <div class="row g-3 mb-3">
+				<div class="col-12">
+					<label for="password2" class="col-form-label">Confirmar contraseña</label>
+					<input type="password" [class]="recoverForm.get('passw2')?.invalid || this.recoverForm.errors?.['mismatch'] ? 'form-control border border-danger': 'form-control  border border-success'" id="password2" formControlName="passw2" value="">
+					<small class="text-danger" *ngIf="this.recoverForm.errors?.['mismatch']">Las contraseñas no son iguales</small>
+				</div>
+			</div>
+            <div class="text-center">
+                <button [disabled]="!recoverForm.valid" class="btn btn-dark" type="submit">Actualizar</button>
+            </div>
+        </form>
+    </div>
+</section>

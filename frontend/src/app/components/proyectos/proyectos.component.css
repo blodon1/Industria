@@ -1,0 +1,103 @@
+.tabs-container {
+    max-width: 1250px;
+    margin: 50px auto;
+    padding: 25px;
+    border-radius: 0 4px 4px 4px;
+    border-style: groove;
+  }
+
+.tabs-container .card{
+    max-width: 1250px;
+    background: white;
+}
+
+.tabs-container .container{
+    max-width: 1250px;
+    background: rgb(227, 231, 236);
+}
+   
+  .tabs {
+    display: flex;
+    border-radius: 0 4px 4px 4px;
+    border-style:hidden;
+    
+  }
+
+  .tabs li:not(:last-child) {
+    margin-right: 100px;
+    border-radius: 0 4px 4px 4px;
+    border-style:hidden;
+  }
+   
+  .tabs li a {
+    display: block;
+    position:relative;
+    top: 4px;
+    padding: 10px 130px;
+    border-radius: 2px 2px 0 0;
+    background: white;
+    opacity: 0.7;
+    transition: all 0.1s ease-in-out;
+    border-color:  rgb(152, 153, 158);
+    text-decoration: solid;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+   
+  .tabs li.active a,
+  .tabs li a:hover {
+    opacity: 1;
+    top: 0;
+    border-radius: 0 4px 4px 4px;
+    border-style:solid;
+  }
+   
+  .tabs-content {
+    position: relative;
+    z-index: 2;
+    padding: 35px;
+    border-style:inherit;
+    border-width: 1px;
+    background: white;
+    box-shadow: aqua;
+  }
+   
+  .tabs-panel {
+    display: none;
+
+  }
+   
+  .tabs-panel.active {
+    display: block;
+  }
+@media screen and (max-width: 600px) {
+    .tabs {
+      flex-direction: column;
+    }
+       
+    .tabs li {
+      width: 100%;
+    }
+       
+    .tabs li:not(:last-child) {
+      margin-right: 0;
+    }
+       
+    .tabs li a {
+      border-radius: 0;
+      opacity: 1;
+      top: 0;
+    }
+       
+    .tabs li.active a::before {
+      content:none;
+      padding-right: 0px;
+    }
+       
+    .tabs-content {
+      border-radius: 0;
+    }
+  }
+
+.navbar {
+    background-color: #2e6da4
+  }

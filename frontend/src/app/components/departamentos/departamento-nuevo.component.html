@@ -1,0 +1,25 @@
+<div class="container">
+    <form [formGroup]="form">
+        <div class="pre-scrollable">
+            <h4>Departamento</h4>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputNombre">Nombre*</label>
+                    <input type="text" class="form-control" formControlName="nombre" id="inputNombre"
+                        placeholder="Nombre">
+                    <small *ngIf="enviado && form.get('nombre')?.invalid" class="text-danger">Requerido
+                    </small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputDesc">Descripción</label>
+                    <textarea cols="5" rows="3" class="form-control" id="inputDesc" formControlName="descripcion"
+                        placeholder="Descripción"></textarea>
+                </div>
+            </div>
+        </div>
+        <button *ngIf="check()" type="submit" class="btn btn-warning mt-5"
+            (click)="!isEdit() ? agregar() : editar()">{{isEdit() ? "Editar" : "Agregar Departamento"}}</button>
+    </form>
+</div>

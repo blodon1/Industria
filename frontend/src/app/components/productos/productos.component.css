@@ -1,0 +1,5 @@
+.pre-scrollable {
+  max-height: calc(100vh * 0.80);
+  height: calc(100vh * 0.80);
+  overflow-y: scroll;
+}

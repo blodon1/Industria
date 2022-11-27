@@ -1,0 +1,94 @@
+<section class="container h-100 my-5">
+	<h1 class="text-center mb-5">Crear Cuenta</h1>
+	<div class="card card-body mt-5 w-75 mx-auto py-2">
+		<form novalidate [formGroup]="form" (ngSubmit)="post()">
+			<div class="row g-3 mb-3 mb-3">
+				<div class="col-6">
+					<label for="nombre" class="col-form-label">Nombre</label>
+					<input type="text" [class]="form.get('nombre')?.invalid ? 'form-control border border-danger': 'form-control  border border-success'" id="nombre" formControlName="nombre" value=""
+						placeholder="Juan">
+				</div>
+				<div class="col-6 mx-auto">
+					<label for="apellido" class="col-form-label">Apellido</label>
+					<input type="text" [class]="form.get('apellido')?.invalid ? 'form-control border border-danger': 'form-control  border border-success'" id="apellido" formControlName="apellido" value=""
+						placeholder="Martinez">
+				</div>
+			</div>
+			<div class="row g-3 mb-3">
+				<div class="col-6">
+					<label for="correo" class="form-label">Correo</label>
+					<div class="input-group">
+						<input type="email" [class]="form.get('email')?.invalid ? 'form-control border border-danger': 'form-control  border border-success'" id="correo" formControlName="email"
+							placeholder="usuario@server.com" aria-describedby="correo">
+						<span class="input-group-text" id="correo" style="border: 1px solid black;">@</span>
+					</div>
+					<small *ngIf="form.get('email')?.invalid" class="text-danger"> El correo es invalido
+					</small>
+				</div>
+				<div class="col-6 mx-auto">
+					<label for="telefono" class="form-label">Teléfono</label>
+					<input type="text" [class]="form.get('telefono')?.invalid ? 'form-control border border-danger': 'form-control  border border-success'" id="telefono" formControlName="telefono"
+						placeholder="9587-7585">
+					<small *ngIf="form.get('telefono')?.errors?.['invalidPhone']" class="text-danger">El télefono es
+						inválido
+					</small>
+				</div>
+			</div>
+			<div class="row g-3 mb-3">
+				<div class="col-6">
+					<label for="password" class="col-form-label">Contraseña</label>
+					<input type="password" [class]="form.get('passw')?.invalid ? 'form-control border border-danger': 'form-control  border border-success'"
+						id="password" formControlName="passw" value="">
+					<small *ngIf="form.get('passw')?.errors?.['invalidPassword']" class="text-danger">Debe ser al menos 8 carácteres, un número y un signo
+					</small>
+				</div>
+				<div class="col-6 mx-auto">
+					<label for="password2" class="col-form-label">Confirmar Contraseña</label>
+					<input type="password" [class]="form.get('passw2')?.invalid ? 'form-control border border-danger': 'form-control  border border-success'" id="password2" formControlName="passw2" value="">
+					<small class="text-danger" *ngIf="this.form.errors?.['mismatch']">Las contraseñas no son iguales</small>
+				</div>
+			</div>
+			<div class="row g-3 mb-3">
+				<div class="col-12">
+					<label for="ciudad" class="form-label">País</label>
+					<select class="form-select" id="pais" formControlName="pais">
+						<option selected disabled value="">Elegir...</option>
+						<option *ngFor="let pais of paises" [ngValue]="pais.id">{{pais.nombre}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="row g-3 mb-3">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="termino" formControlName="termino">
+					<label class="form-check-label" data-bs-toggle="modal" data-bs-target="#modalTerminos"
+						style="text-decoration: underline; cursor: pointer;">
+						Acepto los términos y condiciones
+					</label>
+					<p class="text-danger" *ngIf="this.form.controls['termino'].errors?.['required']">
+						Marque la casilla para aceptar los términos y condiciones.
+					</p>
+				</div>
+			</div>
+			<div class="row g-3 mb-3">
+				<div class="col-auto mx-auto">
+					<button [disabled]="!this.form.valid" class="btn btn-dark" type="submit">Crear</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="modal" id="modalTerminos" tabindex="-1" aria-labelledby="modalTerminosLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalTerminosLabel">Términos y Condiciones</h5>
+					<!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
